@@ -1,0 +1,16 @@
+body{
+  margin-left: 46px;
+}
+
+.blue{
+  color: blue;
+}
+
+i{
+  color: red;
+  font-style: normal;
+}
+
+h1, h2{
+  color: green;
+}

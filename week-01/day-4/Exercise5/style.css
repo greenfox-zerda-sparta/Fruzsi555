@@ -1,0 +1,37 @@
+body{
+  margin-left: 46px;
+}
+
+.blue{
+  color: blue;
+}
+
+i{
+  color: red;
+  font-style: normal;
+}
+
+h1{
+  color: blue;
+}
+
+h2{
+  color: #E5BB41;
+}
+
+.apple{
+  color: red;
+}
+
+ul{
+  color: blue;
+}
+
+.second{
+  color: blue;
+  list-style-type: disc;
+}
+
+.black{
+  color: black
+}
