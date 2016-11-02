@@ -1,23 +1,21 @@
 #include <iostream>
-
 using namespace std;
 
-int main() {
-  int* pointer = NULL;
-
-  // Please allocate a 5 long array and fill it with numbers from 0 to 4, then print the whole array
-  // Please delete the array before the program exits
-  pointer = new int[5];
-
-  for (int i = 0; i < 5; ++i) {
+int* create_array() {
+  int* pointer = new int[5];
+  for (int i = 0; i < 5; i++) {
     pointer[i] = i;
   }
-  for (int i = 0; i < 5; ++i) {
-      cout << pointer[i] << ", ";
+  return pointer;
+}
+
+int main () {
+  int* array = create_array();
+  for (int i = 0; i < 5; i++) {
+    cout <<  array[i] << " ";
   }
 
-  delete []pointer;
-  pointer = NULL;
+  delete[] array;
 
   return 0;
 }
