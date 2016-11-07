@@ -17,37 +17,81 @@ using namespace std;
 //but it has some predefined operations in functions.
 //It should store doubles. It should have an inner array of doubles that stores the values.
 //Each vector should have size property that stores how many elements are in the stack.
-//Functions
-//Construct
-//It should dynamically allocate the Vector instance
-//It should set the size
-//It should dynamically allocate the double array
 
 struct Vector{
   unsigned int size;
   double* storage;
 };
+//Functions
+Vector* vector_construct(double input[], int size);
+double vector_at(Vector& v, unsigned int index);
+void vector_insert(Vector& v, unsigned int index, double value);
+unsigned int vector_find(Vector& v, double value);
+void vector_remove(Vector& v, unsigned int index);
+Vector* vector_concat(Vector& v1, Vector v2);
+
+int main() {
+  double array[] = {1, 2, 3, 4, 5};
+  Vector* vector = vector_construct(array, 5);
+  Vector* vector2 = vector_construct(array, 5);
+  unsigned int index = 3;
+  double value = 8;
+
+  for (int i = 0; i < 5; i++) {
+    cout << vector->storage[i] << " ";
+  }
+  cout << endl << "At index 3 there is the value " << vector_at(*vector, index) << endl;
+  cout << "At non-existing index: " << vector_at(*vector, 8) << endl;
+
+  cout << "Size of the original storage: " << vector->size << endl;
+  vector_insert(*vector, index, value);
+  cout << "Size of the new array: " << vector->size << endl << "New array with the added value of " << value << ": " << endl;
+  for (int i = 0; i < 5 + 1; i++) {
+    cout << vector->storage[i] << " ";
+  }
+  cout << endl << "Value of " << value << " in the new array has the index " << vector_find(*vector, value);
+  vector_remove(*vector, index);
+  cout << endl << "Size of the array after removal: " << vector->size << endl << "Array after removal: " << endl;
+  for (int i = 0; i < 5; i++) {
+    cout << vector->storage[i] << " ";
+  }
+  Vector* vector3 = vector_concat(*vector, *vector2);
+  cout << "Size of the new vector: " << vector3->size;
+
+  delete vector;
+  delete vector2;
+  delete vector3;
+  vector = NULL;
+  vector2 = NULL;
+  vector3 = NULL;
+  return 0;
+}
+
+//Construct
+//It should dynamically allocate the Vector instance
+//It should set the size
+//It should dynamically allocate the double array
 
 Vector* vector_construct(double input[], int size) {
   Vector* new_vector = new Vector;
+  new_vector-> size = size;
   new_vector->storage = new double[size];
   for (int i = 0; i < size; i++) {
     new_vector->storage[i] = input[i];
   }
-  new_vector-> size = size;
   return new_vector;
 }
+
 //At
-//double vector_at(Vector& v, unsigned int index);
 //It should return the value (index) of the given index
 //It should return zero if the value is out of bound
 
 double vector_at(Vector& v, unsigned int index) {
-  double index_value = 0;
-  if (index < v.size) {
-    index_value = v.storage[index];
+  return (index < v.size) ? v.storage[index] : 0;
+  /*if (index < v.size) {
+    return v.storage[index];
   }
-  return index_value;
+  return 0;*/
 }
 
 //Insert
@@ -60,21 +104,19 @@ double vector_at(Vector& v, unsigned int index) {
 //It should reallocate the array
 
 void vector_insert(Vector& v, unsigned int index, double value) {
-  double* new_storage = new double[v.size+1];
+  double* new_storage = new double[++v.size];
   for (unsigned int i = 0; i < index ; i++) {
     new_storage[i] = v.storage[i];
   }
   new_storage[index] = value;
-  for (unsigned int j = index + 1; j < v.size+1; j++) {
-    new_storage[j] = v.storage[j-1];
+  for (unsigned int i = index + 1; i <= v.size; i++) {
+    new_storage[i] = v.storage[i-1];
   }
   delete[] v.storage;
   v.storage = new_storage;
-  v.size++;
 }
 
 //Find
-//unsigned int vector_find(Vector& v, double value);
 //It should return the index of the given value
 
 unsigned int vector_find(Vector& v, double value) {
@@ -82,67 +124,35 @@ unsigned int vector_find(Vector& v, double value) {
   for (unsigned int i = 0; i < v.size; i++) {
     if (v.storage[i] == value) {
       index = i;
+      return index;
     }
   }
-  return index;
+  return -1;
 }
 
 //Remove
-//void vector_remove(Vector& v, unsigned int index);
 //It should remove the element under the index
 //It should reallocate the array
 
 void vector_remove(Vector& v, unsigned int index) {
-  double* new_storage = new double[v.size-1];
-  for (unsigned int i = 0; i < index ; i++) {
-    new_storage[i] = v.storage[i];
-  }
-  for (unsigned int j = index; j < v.size-1; j++) {
-    new_storage[j] = v.storage[j+1];
-  }
+  double* remaining_storage = new double[--v.size];
+  for (unsigned int i = 0; i < v.size ; i++) {
+    remaining_storage[i] = i < index ? v.storage[i] : v.storage[i+1];
+  } // instead of for loops or if-else
   delete[] v.storage;
-  v.storage = new_storage;
-  v.size--;
+  v.storage = remaining_storage;
 }
 
 //Concat
-//Vector* vector_concat(Vector& v1, Vector v2);
-//It should return a new Vector that has all the elements of v1 and v2 like:
-//v1: {1, 2}
-//v2: {3, 4}
-//return: {1, 2, 3, 4}
+//It should return a new Vector that has all the elements of v1 and v2:
 //It should have the sum size of the vectors
 
 Vector* vector_concat(Vector& v1, Vector v2) {
-  unsigned int new_size = v1.size + v2.size;
-  double* new_storage = new double[new_size];
-  for (unsigned int i = 0; i < new_size ; i++) {
-    new_storage[i] = v1.storage[i];
-    new_storage[i + v1.size] = v2.storage[i];
+  unsigned int concat_size = v1.size + v2.size;
+  double* new_storage = new double[concat_size];
+  for (unsigned int i = 0; i < concat_size ; i++) {
+    new_storage[i] = i < v1.size ? v1.storage[i] : v2.storage[i-v1.size];
   }
-  Vector* new_vector2 = vector_construct(new_storage, new_size);
-  return new_vector2;
-}
-
-int main() {
-
-  double array[] = {1, 2, 3, 4, 5};
-  Vector* vector = vector_construct(array, 5);
-  unsigned int index = 3;
-  double value = 8;
-
-  cout << "Size of the original storage: " << vector->size << endl;
-
-  vector_insert(*vector, index, value);
-  cout << endl << "Size of new array: " << vector->size << endl << "New array with " << value << ": " << endl;
-  for (int i = 0; i < 5 + 1; i++) {
-    cout << vector->storage[i] << " ";
-  }
-  vector_remove(*vector, index);
-  cout << endl << "Size of array after removal: " << vector->size << endl << "Array after removal: " << endl;
-  for (int i = 0; i < 5; i++) {
-    cout << vector->storage[i] << " ";
-  }
-
-  return 0;
+  Vector* concat_vector = vector_construct(new_storage, concat_size);
+  return concat_vector;
 }
