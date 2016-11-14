@@ -1,6 +1,5 @@
+#include "util.h"
 #include "Song.h"
-
-using namespace std;
 
 Song::Song(std::string title, std::string artist) {
   this->title = title;
@@ -17,8 +16,8 @@ bool Song::is_rating_valid(unsigned int rating) {
   }
 }
 
-float Song::get_avg_rating() {
-  return (float)sum_of_ratings / song_counter;
+std::string Song::get_avg_rating() {
+  return "Song of " + this->artist + ", average rating is: " + to_string((float)sum_of_ratings / song_counter);
 }
 
 Song::~Song() {
