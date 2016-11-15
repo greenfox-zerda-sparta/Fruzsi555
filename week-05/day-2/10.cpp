@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <cstring>
+//#include <cstring>
 
 using namespace std;
 
@@ -19,13 +19,11 @@ void reverse_lines_in_file(string name) {
   ifstream file;
   file.open(name.c_str());
   string line;
-  string temp;
   while (getline(file, line)) {
-    temp += (line + '\n');
-    for (int i = strlen(temp.c_str()) - 1; i > 0; i--) {
-      result += temp.c_str()[i];
+    for (int i = line.size() - 1; i >= 0; i--) {
+      result += line[i];
     }
-    temp = " ";
+    result += "\n";
   }
   cout << result << endl;
   file.close();

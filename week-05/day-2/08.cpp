@@ -24,7 +24,6 @@ bool is_copied(string from_file, string to_file) {
   file2.open(to_file.c_str());
   if (file1.is_open() && file2.is_open()) {
     string line;
-    string content;
     while (getline(file1, line)) {
       file2 << line << "\n";
     }
