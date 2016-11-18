@@ -5,4 +5,4 @@
 
 std::string to_string(int integer);
 
-#endif /* UTIL_H */
+#endif // UTIL_H
