@@ -11,7 +11,7 @@ private:
 public:
   Jukebox();
   void add_song(Song& song);
-  void rate(Song& song, unsigned int _rate);
+  void rate(Song& song, int _rate);
   float get_rating_by_artist(std::string _artist);
   float get_rating_by_genre(std::string _genre);
   std::string top_rated_title();

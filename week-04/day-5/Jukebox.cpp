@@ -24,14 +24,14 @@ void Jukebox::add_song(Song &song) {
   ++song_counter;
 }
 
-void Jukebox::rate(Song& song, unsigned int _rate) {
+void Jukebox::rate(Song& song, int _rate) {
     song.is_rating_valid(_rate);
 }
 
 float Jukebox::get_rating_by_artist(std::string _artist) {
   if (songs != 0) {
     float sum_of_rates = 0;
-    int count_of_rates = 0;
+    float count_of_rates = 0;
     for (unsigned int i = 0; i < song_counter; i++) {
       if (songs[i]->get_artist() == _artist) {
         sum_of_rates += songs[i]->get_sum_of_ratings();
@@ -46,7 +46,7 @@ float Jukebox::get_rating_by_artist(std::string _artist) {
 
 float Jukebox::get_rating_by_genre(string _genre) {
   float sum_of_rates = 0;
-  int count_of_rates = 0;
+  float count_of_rates = 0;
   for (unsigned int i = 0; i < song_counter; i++) {
     if (songs[i]->get_genre() == _genre) {
       sum_of_rates += songs[i]->get_sum_of_ratings();

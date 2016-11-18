@@ -47,11 +47,11 @@ string Song::get_avg_rating() {
   return "Song of " + this->artist + ", average rating is: " + to_string((float)sum_of_ratings / rate_counter);
 }
 
-int Song::get_rate_counter() {
+float Song::get_rate_counter() {
     return rate_counter;
 }
 
-int Song::get_sum_of_ratings() {
+float Song::get_sum_of_ratings() {
     return sum_of_ratings;
 }
 

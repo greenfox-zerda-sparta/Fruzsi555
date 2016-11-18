@@ -3,8 +3,8 @@
 
 using namespace std;
 
-string to_string(int integer) {
+string to_string(float number) {
   stringstream ss;
-  ss << integer;
+  ss << number;
   return ss.str();
 }

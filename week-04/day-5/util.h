@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string to_string(int integer);
+std::string to_string(float number);
 
 #endif // UTIL_H

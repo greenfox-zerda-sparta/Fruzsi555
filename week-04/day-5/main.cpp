@@ -55,7 +55,7 @@ int main() {
   cout << song6->get_avg_rating() << endl;
 
   cout << endl << "Top rated title is - the favourite of my childhood is: " << st.top_rated_title() << endl;
-  cout << endl << "Top rated genre is - the favourite of my childhood is: " << st.top_rated_genre() << endl;
+  cout << st.top_rated_genre() << endl;
 
   return 0;
 }
