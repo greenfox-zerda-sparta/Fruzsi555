@@ -1,7 +1,6 @@
 #ifndef JUKEBOX_H
 #define JUKEBOX_H
 #include "util.h"
-
 #include "Song.h"
 
 class Jukebox {
