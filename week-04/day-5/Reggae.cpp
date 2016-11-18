@@ -1,7 +1,7 @@
 #include "Reggae.h"
 
 Reggae::Reggae(std::string title, std::string artist) : Song(title, artist) {
-  genre = "reggae";
+  genre = reggae;
 }
 
 bool Reggae::is_rating_valid(unsigned int rating) {

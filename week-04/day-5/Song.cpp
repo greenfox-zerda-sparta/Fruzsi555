@@ -1,5 +1,3 @@
-//#include <iostream>
-//#include <string>
 #include "util.h"
 #include "Song.h"
 
@@ -8,7 +6,7 @@ using namespace std;
 Song::Song() {
     this->title = "";
     this->artist = "";
-    this->genre = "";   //genre = UNSPECIFIED;
+    this->genre = 0;
     rate_counter = 0;
     sum_of_ratings = 0;
 }
@@ -16,7 +14,7 @@ Song::Song() {
 Song::Song(string title, string artist) {
     this->title = title;
     this->artist = artist;
-    this->genre = "";  // genre = UNSPECIFIED;
+    this->genre = 0;
     rate_counter = 0;
     sum_of_ratings = 0;
 }
@@ -39,7 +37,7 @@ string Song::get_artist() {
     return artist;
 }
 
-string Song::get_genre() {
+int Song::get_genre() {
     return genre;
 }
 

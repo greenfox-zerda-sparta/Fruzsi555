@@ -1,8 +1,7 @@
-#include <iostream>
 #include "Rock.h"
 
 Rock::Rock(std::string title, std::string artist) : Song(title, artist) {
-  genre = "rock";
+  genre = rock;
 }
 
 bool Rock::is_rating_valid(unsigned int rating) {

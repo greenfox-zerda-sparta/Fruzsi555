@@ -14,7 +14,7 @@ int main() {
   Song* song3 = new Pop("Hit me, baby", "Britney");
   Song* song4 = new Reggae("Is this love", "Bob Marley");
   Song* song5 = new Rock("Thunderstruck", "AC/DC");
-  Song* song6 = new Rock("Back in Black", "AC/DC");
+  Song* song6 = new Rock("Free Bird", "Lynyrd Skynyrd");
 
   Jukebox st;
   st.add_song(*song1);

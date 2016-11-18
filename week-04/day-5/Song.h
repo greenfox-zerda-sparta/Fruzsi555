@@ -1,7 +1,6 @@
 #ifndef SONG_H
 #define SONG_H
 
-#include <string>
 #include "util.h"
 
 class Song {
@@ -9,9 +8,10 @@ class Song {
     std::string title;
     std::string artist;
   protected:
-    std::string genre;
+    int genre;
     int rate_counter;
     float sum_of_ratings;
+    enum genre_to_int {song, pop, rock, reggae};
   public:
     Song();
     Song(std::string title, std::string artist);
@@ -21,7 +21,7 @@ class Song {
     std::string get_artist();
     float get_rate_counter();
     float get_sum_of_ratings();
-    std::string get_genre();
+    int get_genre();
     virtual ~Song();
 };
 
