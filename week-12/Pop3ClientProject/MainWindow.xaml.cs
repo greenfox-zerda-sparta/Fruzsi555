@@ -54,7 +54,7 @@ namespace WpfApplication1
                     var testText = message.GetTextBody(MimeKit.Text.TextFormat.Plain);
                     richTextBox.Selection.Text += message.Date + " Subject: " + message.Subject + " Message: " + testText;
 
-                    //client.DeleteMessage(i);
+                    client.DeleteMessage(i);
                 }
                 client.Disconnect(true);
             }
