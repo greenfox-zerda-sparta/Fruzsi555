@@ -49,10 +49,10 @@ namespace WpfApplication1
                 {
                     var message = client.GetMessage(i);
 
-                    message.WriteTo(string.Format($"{0}.msg", i));
+                    message.WriteTo($"{i}.msg");
 
                     var testText = message.GetTextBody(MimeKit.Text.TextFormat.Plain);
-                    richTextBox.Selection.Text += message.Date + " Subject: " + message.Subject + " Message: " + testText;
+                    richTextBox.Selection.Text += $"{message.Date} Subject: {message.Subject} Message: {testText}";
 
                     client.DeleteMessage(i);
                 }
